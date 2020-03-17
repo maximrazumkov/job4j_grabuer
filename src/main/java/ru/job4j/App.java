@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
@@ -54,10 +55,7 @@ public class App {
             Trigger trigger = newTrigger()
                     .withIdentity("myTrigger", "group1")
                     .startNow()
-                    //.withSchedule(cronSchedule(config.getTime()))
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(1440)
-                            .repeatForever())
+                    .withSchedule(cronSchedule(config.getTime()))
                     .build();
             tasks.put(job, new HashSet<Trigger>() { { add(trigger); } });
             Scheduler scheduler = new QuartzScheduler(tasks, new StdSchedulerFactory().getScheduler());
