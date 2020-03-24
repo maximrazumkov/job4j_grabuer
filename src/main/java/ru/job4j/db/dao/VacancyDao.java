@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VacancyDao {
@@ -22,7 +22,7 @@ public class VacancyDao {
 
     public List<Vacancy> findAll() {
         String query = "select * from vacancy";
-        List<Vacancy> vacancies = new LinkedList<>();
+        List<Vacancy> vacancies = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
              ResultSet rs = statement.executeQuery(query);
              while (rs.next()) {

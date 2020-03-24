@@ -4,10 +4,7 @@ package ru.job4j.db;
 import ru.job4j.db.dao.VacancyDao;
 import ru.job4j.db.model.Vacancy;
 
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SimpleDbService implements DbService {
     private final VacancyDao vacancyDao;
@@ -18,8 +15,8 @@ public class SimpleDbService implements DbService {
 
     @Override
     public void insertNewVacancys(List<Vacancy> vacancys) {
-        List<Vacancy> newVacancy = new LinkedList<>();
-        Set<Vacancy> vacancySet = new LinkedHashSet<>(vacancyDao.findAll());
+        List<Vacancy> newVacancy = new ArrayList<>();
+        Set<Vacancy> vacancySet = new HashSet<>(vacancyDao.findAll());
         for (Vacancy vacancy : vacancys) {
             if (!vacancySet.contains(vacancy)) {
                 newVacancy.add(vacancy);

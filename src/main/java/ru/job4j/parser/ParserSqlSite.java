@@ -11,8 +11,8 @@ import ru.job4j.db.model.Vacancy;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -29,7 +29,7 @@ public class ParserSqlSite implements Function<String, List<Vacancy>> {
     @Override
     public List<Vacancy> apply(String s) {
         Calendar calendar = Calendar.getInstance();
-        List<Vacancy> vacancies = new LinkedList<>();
+        List<Vacancy> vacancies = new ArrayList<>();
         if (lastRun == null) {
             calendar.set(calendar.get(Calendar.YEAR), 0, 1);
             lastRun = new Timestamp(calendar.getTimeInMillis());
